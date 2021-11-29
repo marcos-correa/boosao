@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
   showSentence: Boolean = false;
   error: Boolean = false;
   filter: String = 'both';
-
+  fumt:Boolean = false;
   constructor(
     private vehicleService: VehicleService,
     private router: Router,
@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getFumt()
     this.loading = true
     this.getAllVehicles()
     this.loading = false
@@ -43,6 +44,15 @@ export class ListComponent implements OnInit {
     this.search(this.sentence)
   }
 
+  getFumt(){
+    this.vehicleService.getFumt().subscribe(res =>{
+      console.log('fumt')  
+      this.fumt=true
+    }, err=>{
+      console.log('err')  
+
+    })
+  }
   filterVan() {
     this.vanStatus = !this.vanStatus
     this.search(this.sentence)

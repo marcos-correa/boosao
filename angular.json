@@ -81,7 +81,7 @@
           "configurations": {
             "production": {
               "browserTarget": "boosao:build:production",
-              "proxyConfig": "./proxy.config.js"
+              "proxyConfig": "./proxyprod.config.js"
             },
             "development": {
               "browserTarget": "boosao:build:development",
