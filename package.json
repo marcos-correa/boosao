@@ -11,6 +11,8 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
+    "@angular/cli": "~12.2.7",
+    "@angular/compiler-cli": "~12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -30,8 +32,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.7",
-    "@angular/cli": "~12.2.7",
-    "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/lodash": "^4.14.177",
     "@types/node": "^12.11.1",
