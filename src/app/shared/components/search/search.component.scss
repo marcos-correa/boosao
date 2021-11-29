@@ -1,0 +1,22 @@
+.boo-search{
+  &-box{
+    width: 600px;
+    height: 48px;
+  }
+  &-input{
+    padding: 12px 12px 12px 24px;
+    
+    &:active, &:focus-visible{
+      border: none;
+      outline: transparent;
+    }
+    &::placeholder{
+      color: #8898AA;
+    }
+  }
+  &-button{
+    width: 36px;
+    height: 36px;
+   
+  }
+}

@@ -1,0 +1,50 @@
+.boo-info-location{
+  display: none;
+  margin-left: -50px;
+  margin-top: auto;
+}
+.boo-card{
+  width: 100%;
+  height: 160px;
+  padding: 20px 16px;
+  border-radius: 16px;
+  transition : box-shadow 200ms ease-out;
+  border: 2px solid white;
+  box-shadow: 0 .125rem .25rem rgba(black, .075);
+  &:hover{
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(black, .15);
+    .boo-info-location{
+      display: flex;
+      align-items: center;
+    }
+  }
+ 
+}
+
+.boo-icon{
+    width: 55px;
+    height: 36px;
+    margin-right: 12px;
+}
+
+.vehicle{
+  &-id{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    color: #8898AA;
+    line-height: 20px;
+  }
+  &-name{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: #32325D;
+    line-height: 26px;
+    margin-left: -67px;
+    margin-bottom: 0;
+  }
+}
+
+p {
+  text-indent: 67px;
+}

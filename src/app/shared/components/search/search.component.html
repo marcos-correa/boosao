@@ -1,0 +1,22 @@
+<div class="w-100 boo-search d-flex justify-content-center">
+  <div class="boo-search-box bg-white rounded-pill d-flex align-items-center">
+    <input 
+      type="text" 
+      class="boo-search-input bg-transparent border-0 flex-grow-1" 
+      placeholder="Busque pelo nome ou código do transporte coletivo" 
+      [(ngModel)]="frase" 
+      (ngModelChange)="emitSentence(frase)" 
+      (keyup.enter)="emitSearch()"
+    >
+    <div class="boo-search-button me-2">
+      <button *ngIf="frase.length > 0" class="btn btn-link rounded-circle w-100 h-100 d-flex align-items-center justify-content-center" type="submit" (click)="resetSearch()">
+        <i class="bi bi-x-lg text-danger"></i>
+      </button>
+    </div>   
+    <div class="boo-search-button me-2">
+      <button class="btn btn-success rounded-circle w-100 h-100 d-flex align-items-center justify-content-center" type="submit" (click)="emitSearch()">
+        <i class="bi bi-search text-white"></i>
+      </button>
+    </div>      
+  </div>
+</div>

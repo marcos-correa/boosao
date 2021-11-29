@@ -1,0 +1,24 @@
+.boo-return{
+
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #343a40; 
+}
+.boo-arrow{
+  font-weight: 500;
+  font-size: 32px;
+}
+.boo-navbar{
+  cursor: pointer;
+}
+.boo-location{
+  cursor: pointer;
+  opacity: 60%;
+  transition: opacity 0.15s ease-out;
+
+  &:hover{
+    opacity: 100%;
+    
+  }
+}

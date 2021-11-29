@@ -1,0 +1,50 @@
+
+
+.boo-icon{
+  width: 44px;
+  height: 29px;
+  // margin-right: 4px;
+}
+
+.boo-filter{
+  &:hover{
+    cursor: pointer;
+    box-shadow: 0 .5rem .5rem rgba(black, .05);
+  }
+  height: 40px;
+  border-radius: 10px;
+  border-color: white;
+  &-text{
+    font-size: 14px;
+    font-weight: 500;
+    &.nonfilt{
+      color: #adb5bd;
+    }
+  }
+  &-label{
+    font-size: 18px;
+    font-weight: 400
+  }
+}
+
+.boo-list-wrapper{
+  padding:0 144px;
+  overflow-x: hidden;
+}
+
+.error-text{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.with-list{
+  transition: max-height,height 0.15s ease-out;
+  height: 35vh;
+}
+.without-list{
+  transition: max-height,height 0.15s ease-out;
+
+  height: 85vh;
+}
+
+

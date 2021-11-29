@@ -1,0 +1,34 @@
+.boo-card{
+  width: 100%;
+  min-height: 85vh;
+  padding: 20px 16px;
+  border-radius: 16px;
+  transition : box-shadow 200ms ease-out;
+  border: 2px solid white;
+  box-shadow: 0 .125rem .25rem rgba(black, .075);
+  
+ 
+}
+
+.boo-icon{
+  margin-right: 32px;
+}
+
+.vehicle{
+  &-id{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 32px;
+    color: #8898AA;
+    line-height: 32px;
+  }
+  &-name{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 44px;
+    color: #212529;
+    line-height: 44px;
+  }
+}
+
+.boo-iti-text{
+  margin-top: 40px;
+}

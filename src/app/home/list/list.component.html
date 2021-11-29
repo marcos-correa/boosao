@@ -1,0 +1,104 @@
+<div style="height: 180px; min-height: 25vh;">
+
+  <div class="pt-5 pb-2 d-flex align-items-center justify-content-center">
+    <h1>
+      <span class="text-primary">b</span>
+      <span class="text-danger">o</span>
+      <span class="text-warning">o</span>
+      <span class="text-primary">s</span>
+      <span class="text-success">a</span>
+      <span class="text-danger">o</span>
+    </h1>
+  </div>
+  <boo-search (sentence)="setValueToSearch($event)" (search)="search(this.sentence)"></boo-search>
+</div>
+
+<!-- filtros -->
+<div style="min-height: 10vh;height: 60px;">
+  <div class="d-flex row justify-content-center">
+    <div class="col-1 d-flex flex-row align-items-center justify-content-end">
+      <div class="boo-filter-label mt-1">FILTROS:</div>
+    </div>
+    <div class="col-lg-2  col-sm-4" (click)="filterBus()">
+      <div class="card boo-filter d-flex flex-row align-items-center justify-content-center px-3"
+        [ngClass]="{'border border-success':busStatus}">
+        <div class="boo-icon me-1">
+          <img [src]="busStatus?'assets/svg/bus_fil.svg':'assets/svg/bus_fil_gray.svg'" />
+        </div>
+        <div class="boo-filter-text mt-1" [ngClass]="{'nonfilt':!busStatus }">ÔNIBUS</div>
+      </div>
+    </div>
+    <div class="col-lg-2  col-sm-4" (click)="filterVan()">
+      <div class="card boo-filter d-flex flex-row align-items-center justify-content-center mr-3"
+        [ngClass]="{'border border-danger':vanStatus}">
+        <div class="boo-icon ">
+          <img [src]="vanStatus?'assets/svg/van_fil.svg':'assets/svg/van_fil_gray.svg'" />
+        </div>
+        <div class="boo-filter-text mt-1" [ngClass]="{'nonfilt':!vanStatus }">LOTAÇÃO</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- mensagens auxiliares -->
+<div style="min-height: 8vh;height: 34px;">
+  <div class="row">
+    <div class="col-12  d-flex justify-content-center">
+
+      <span *ngIf="(busStatus || vanStatus)&&vehicles && vehicles.length > 0; else ops">
+        Mostrando <strong>{{vehicles.length}}</strong> resultados de
+        <strong *ngIf="busStatus" class="text-uppercase">ônibus</strong>
+        <span *ngIf="busStatus && vanStatus" class=""> e </span>
+        <strong *ngIf="vanStatus" class="text-uppercase">lotação</strong>
+        <span *ngIf="sentence.length > 0 && showSentence" class=""> para o termo de pesquisa </span>
+        <strong *ngIf="sentence.length > 0 && showSentence" class="">"{{sentence}}"</strong>
+        em Porto Alegre
+      </span>
+      <span *ngIf="!busStatus && !vanStatus">
+        Selecione pelo menos um filtro de transporte para começar a ver resultados
+      </span>
+      <ng-template #ops>
+        <span *ngIf="(busStatus || vanStatus)">
+
+          Não há resultados para a sua busca por
+          <strong *ngIf="busStatus" class="text-uppercase"> ônibus </strong>
+          <span *ngIf="busStatus && vanStatus" class=""> ou </span>
+          <strong *ngIf="vanStatus" class="text-uppercase"> lotação </strong>
+          <span *ngIf="sentence.length > 0 && showSentence" class=""> para o termo de pesquisa </span>
+          <strong *ngIf="sentence.length > 0 && showSentence" class="">"{{sentence}}"</strong>
+          em Porto Alegre
+        </span>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- lista -->
+<div *ngIf="vehicles && vehicles.length !== 0; else emptyResults" class="boo-list-wrapper">
+  <div class="row gx-4 gy-4">
+    <div class="col-lg-4 col-xs-12" *ngFor="let vehicle of vehicles  | paginate: {itemsPerPage: 12, currentPage: page} ">
+      <boo-card [type]="vehicle.type || 'bus'" [code]="vehicle.codigo || ''" [name]="vehicle.nome || ''"
+        (click)="setSelectedVehicle(vehicle)" [routerLink]="['/buscar', vehicle.id]"></boo-card>
+    </div>
+  </div>
+  <div class="boo-page d-flex justify-content-center mt-4 mb-5">
+    <pagination-controls (pageChange)="page = $event" previousLabel="voltar" nextLabel="próximo"></pagination-controls>
+  </div>
+</div>
+
+<!-- erros, carregando e sem resultados -->
+<ng-template #emptyResults>
+  <div class="d-flex align-items-center justify-content-center">
+    <div *ngIf="loading && !error" class="d-flex flex-column">
+      <img src="assets/gif/bus_loading.gif" />
+      <span>
+        Carregando resultados
+      </span>
+    </div>
+    <div *ngIf="error" class="d-flex flex-column">
+      <img src="assets/svg/error.svg" height="70px"/>
+
+      <span class="text-danger">Ops, alguma coisa deu ruim. Tente novamente daqui a pouco.</span>
+    </div>
+  </div>
+</ng-template>

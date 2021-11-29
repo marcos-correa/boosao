@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="mt-4 d-flex  align-items-center">
+    <div class="boo-navbar d-flex align-items-center " [routerLink]="['/']">
+      <div class="boo-arrow me-4">
+        <i class="bi bi-arrow-left"></i>
+      </div>
+      <div class="boo-return">
+        voltar
+      </div>
+    </div>
+    <div class="boo-return ms-auto">
+      visualização do itinerário
+    </div>
+  </div>
+</div>
+
+<div class="boo-itinerary mt-4">
+  <boo-itinerary-card [type]="getType()" [code]="vehicle.codigo || ''" [name]="vehicle.nome || ''">
+    <ng-container>
+      <div class="row mt-4">
+        <span class="ms-3">Clique em um ponto do itinerário dessa linha de {{vehicle.type == 'bus' ? 'ônibus': 'lotação'}}
+          para ver a localização no Google Maps</span>
+
+        <div *ngFor="let point of itinerary; let i = index" class="col-1 d-flex flex-column">
+          <div *ngIf="point.lat && point.lng" class="d-flex flex-column align-items-center p-4 boo-location"
+            (click)="redirectMaps(point.lat,point.lng)">
+            <img src="assets/svg/location.svg" class="position-relative" alt="">
+            <span class="text-sm-center small text-uppercase">
+              Ponto {{i}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </boo-itinerary-card>
+</div>
+<div>
+
+</div>
