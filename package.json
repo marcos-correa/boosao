@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "ng-high-memory": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --configuration=production",
+    "heroku-postbuild": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod && npm install -g http-server-spa",
     "test": "ng test"
   },
   "private": true,
@@ -15,6 +16,7 @@
     "@angular/cli": "~12.2.7",
     "@angular-devkit/build-angular": "~12.2.7",
     "@angular/compiler-cli": "~12.2.0",
+    "@types/lodash": "^4.14.177",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -34,7 +36,6 @@
   },
   "devDependencies": {
     "@types/jasmine": "~3.8.0",
-    "@types/lodash": "^4.14.177",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
