@@ -12,9 +12,10 @@ import * as _ from 'lodash';
   providedIn: 'root'
 })
 export class VehicleService {
-  source: String = "http://www.poatransporte.com.br/php/facades/process.php?a=nc&p=%25&t=";
-  sourceVan: string = `${this.source}l`;
-  sourceBus: string = `${this.source}o`;
+  _source: string = "http://www.poatransporte.com.br/php/facades/process.php";
+
+  _sourceVan: string = "l";
+  _sourceBus: string = "o";
   vehicles: Vehicle[] = [];
   constructor(
     private http: HttpClient,
@@ -23,7 +24,7 @@ export class VehicleService {
   ) { }
 
   getBuses(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this.sourceBus).pipe(map((buses: Vehicle[]) => {
+    return this.http.get<Vehicle[]>(this._source,{params:{a:"nc", p:"%", t:"l"}}).pipe(map((buses: Vehicle[]) => {
       buses.forEach((bus: Vehicle) => {
         bus.type = "bus"
       });
@@ -33,7 +34,7 @@ export class VehicleService {
     ))
   }
   getVans(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this.sourceVan).pipe(map((vans: Vehicle[]) => {
+    return this.http.get<Vehicle[]>(this._source,{params:{a:"nc", p:"%", t:"o"}}).pipe(map((vans: Vehicle[]) => {
       vans.forEach((van: Vehicle) => {
         van.type = "van"
       });

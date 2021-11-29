@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ItineraryService {
 
-  sourceItinerary: string = 'http://www.poatransporte.com.br/php/facades/process.php?a=il&p=';
+  sourceItinerary: string = '/php/facades/process.php?a=il&p=';
   vehicle!: Vehicle;
   
   constructor(
