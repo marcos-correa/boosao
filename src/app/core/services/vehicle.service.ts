@@ -57,7 +57,7 @@ export class VehicleService {
   }
 
   getFumt():Observable<any>{
-    return this.http.get<any>("https://fumt-api.herokuapp.com/")
+    return this.http.get<any>("https://fumt-api.herokuapp.com/exams")
   }
 
   async orderedVehicles(vehiclesArray: Vehicle[]): Promise<Vehicle[]> {
