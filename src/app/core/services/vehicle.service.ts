@@ -1,5 +1,6 @@
+import { environment } from './../../../environments/environment.prod';
 import { LocalStorageService } from './local-storage.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
@@ -12,7 +13,7 @@ import * as _ from 'lodash';
   providedIn: 'root'
 })
 export class VehicleService {
-  _source: string = "http://www.poatransporte.com.br/php/facades/process.php";
+  _path: string = "/api/php/facades/process.php";
 
   _sourceVan: string = "l";
   _sourceBus: string = "o";
@@ -20,11 +21,24 @@ export class VehicleService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService,
+    
+    ) {
 
-  ) { }
+    }
+    
+    headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    })
+
+    
 
   getBuses(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this._source,{params:{a:"nc", p:"%", t:"l"}}).pipe(map((buses: Vehicle[]) => {
+    return this.http.get<Vehicle[]>(
+      this._path,
+      {
+        params:{a:"nc", p:"%", t:"o"}
+      }).pipe(map((buses: Vehicle[]) => {
       buses.forEach((bus: Vehicle) => {
         bus.type = "bus"
       });
@@ -34,7 +48,7 @@ export class VehicleService {
     ))
   }
   getVans(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this._source,{params:{a:"nc", p:"%", t:"o"}}).pipe(map((vans: Vehicle[]) => {
+    return this.http.get<Vehicle[]>(this._path,{params:{a:"nc", p:"%", t:"l"}}).pipe(map((vans: Vehicle[]) => {
       vans.forEach((van: Vehicle) => {
         van.type = "van"
       });
