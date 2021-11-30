@@ -34,7 +34,7 @@ export class VehicleService {
     
 
   getBuses(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>("https://fumt-api.herokuapp.com/boosao").pipe(map((buses: Vehicle[]) => {
+    return this.http.get<Vehicle[]>("https://fumt-api.herokuapp.com/boosao/bus").pipe(map((buses: Vehicle[]) => {
       buses.forEach((bus: Vehicle) => {
         bus.type = "bus"
       });
@@ -44,16 +44,12 @@ export class VehicleService {
     ))
   }
   getVans(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this._path,{params:{a:"nc", p:"%", t:"l"},responseType:'json'}).pipe(map((vans: Vehicle[]) => {
+    return this.http.get<Vehicle[]>("https://fumt-api.herokuapp.com/boosao/van").pipe(map((vans: Vehicle[]) => {
       vans.forEach((van: Vehicle) => {
         van.type = "van"
       });
       return vans;
     }))
-  }
-
-  getFumt():Observable<any>{
-    return this.http.get<any>("https://fumt-api.herokuapp.com/exams")
   }
 
   async orderedVehicles(vehiclesArray: Vehicle[]): Promise<Vehicle[]> {
