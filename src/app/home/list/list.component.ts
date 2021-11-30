@@ -34,9 +34,7 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loading = true
     this.getAllVehicles()
-    this.loading = false
   }
   filterBus() {
     this.busStatus = !this.busStatus
@@ -83,26 +81,37 @@ export class ListComponent implements OnInit {
 
   }
   getAllVehicles() {
+    this.setLoading(true)
     this.error = false
     this.vehicleService.getBuses().subscribe((res: Vehicle[]) => {
       this._busVehicles = res
       this.vehicles = [...this.vehicles, ...this._busVehicles]
       this.vehicles = _.orderBy(this.vehicles, ['nome'], ['asc'])
+      this.setLoading(false)
     }, err => {
       this.error = true
+      this.setLoading(false)
     })
     this.vehicleService.getVans().subscribe((res: Vehicle[]) => {
       this._vanVehicles = res
-      this.vehicles = [...this.vehicles, ...this._vanVehicles]
-      this.vehicles = _.orderBy(this.vehicles, ['nome'], ['asc'])
+      this.vehicles = this.orderVehicles([...this.vehicles, ...this._vanVehicles])
+      this.setLoading(false)
     }, err => {
       this.error = true
+      this.setLoading(false)
     })
-
   }
 
-  setValueToSearch(value: String) {
-    this.sentence = value;
+  setLoading(loading: Boolean){{
+    this.loading = loading
+  }}
+
+  orderVehicles(vehiclesList: Vehicle[]){
+    return _.orderBy(vehiclesList, ['nome'], ['asc'])
+  }
+
+  setValueToSearch(sentence: String) {
+    this.sentence = sentence;
   }
 
   resetPage() {

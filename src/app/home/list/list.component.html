@@ -45,7 +45,7 @@
   <div class="row">
     <div class="col-12  d-flex justify-content-center">
 
-      <span *ngIf="(busStatus || vanStatus)&&vehicles && vehicles.length > 0; else ops">
+      <span *ngIf="(busStatus || vanStatus)&&vehicles && vehicles.length > 0 && !loading; else ops">
         Mostrando <strong>{{vehicles.length}}</strong> resultados de
         <strong *ngIf="busStatus" class="text-uppercase">ônibus</strong>
         <span *ngIf="busStatus && vanStatus" class=""> e </span>
@@ -54,11 +54,11 @@
         <strong *ngIf="sentence.length > 0 && showSentence" class="">"{{sentence}}"</strong>
         em Porto Alegre
       </span>
-      <span *ngIf="!busStatus && !vanStatus">
+      <span *ngIf="!busStatus && !vanStatus && !loading">
         Selecione pelo menos um filtro de transporte para começar a ver resultados
       </span>
       <ng-template #ops>
-        <span *ngIf="(busStatus || vanStatus)">
+        <span *ngIf="(busStatus || vanStatus) && !loading">
 
           Não há resultados para a sua busca por
           <strong *ngIf="busStatus" class="text-uppercase"> ônibus </strong>
@@ -95,7 +95,7 @@
         Carregando resultados
       </span>
     </div>
-    <div *ngIf="error" class="d-flex flex-column">
+    <div *ngIf="error && !loading" class="d-flex flex-column">
       <img src="assets/svg/error.svg" height="70px"/>
 
       <span class="text-danger">Ops, alguma coisa deu ruim. Tente novamente daqui a pouco.</span>
