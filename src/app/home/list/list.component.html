@@ -13,6 +13,9 @@
   <boo-search (sentence)="setValueToSearch($event)" (search)="search(this.sentence)"></boo-search>
 </div>
 
+<div *ngIf="true">
+  <span>Status: {{statusBook | json}}</span>
+</div>
 <!-- filtros -->
 <div style="min-height: 10vh;height: 60px;">
   <div class="d-flex row justify-content-center">
