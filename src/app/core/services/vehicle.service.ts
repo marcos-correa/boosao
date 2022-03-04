@@ -43,6 +43,13 @@ export class VehicleService {
     }
     ))
   }
+
+  getBookServicestatus(): Observable<any>{
+    let bookapi = "http://publishing-house-service.herokuapp.com/";
+    return this.http.get<any>(bookapi).pipe(map(res =>{
+      return res.message
+    }))
+  }
   getVans(): Observable<Vehicle[]> {
     return this.http.get<Vehicle[]>("https://fumt-api.herokuapp.com/boosao/van").pipe(map((vans: Vehicle[]) => {
       vans.forEach((van: Vehicle) => {

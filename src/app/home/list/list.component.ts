@@ -26,6 +26,7 @@ export class ListComponent implements OnInit {
   error: Boolean = false;
   filter: String = 'both';
   fumt:Boolean = false;
+  statusBook:any = "";
   constructor(
     private vehicleService: VehicleService,
     private router: Router,
@@ -35,10 +36,16 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllVehicles()
+    this.getStatusBook()
   }
   filterBus() {
     this.busStatus = !this.busStatus
     this.search(this.sentence)
+  }
+  getStatusBook(){
+    this.vehicleService.getBookServicestatus().subscribe((res: any) => {
+      this.statusBook = res
+    })
   }
 
   
