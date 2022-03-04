@@ -45,7 +45,7 @@ export class VehicleService {
   }
 
   getBookServicestatus(): Observable<any>{
-    let bookapi = "http://publishing-house-service.herokuapp.com/";
+    let bookapi = "https://publishing-house-service.herokuapp.com/";
     return this.http.get<any>(bookapi).pipe(map(res =>{
       return res.message
     }))
